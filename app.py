@@ -170,3 +170,37 @@ def one_hot_encode(df):
     df_ohe = encoder.fit_transform(df)
     return df_ohe
 
+# Main application
+def load_data():
+    # Replace this with your actual data loading logic
+    return pd.read_csv("data_file.csv")
+
+def clean_data(df):
+    return dc_no_encoding_pipeline(df)
+
+def engineer_features(df):
+    # Add your feature engineering logic here
+    df['price_per_mile'] = df['fare_lg'] / df['nsmiles']
+    return df
+
+def calculate_pps1(df, target):
+    return pd.DataFrame(
+        [
+            {
+                "x": x,
+                "y": y,
+                "ppscore": predictive_power_score(df[x], df[y]),
+            }
+            for x in df.columns
+            for y in [target]
+            if x != y
+        ]
+    )
+
+
+def calculate_pps(df, target):
+    # Get the Predictive Power Score (PPS) matrix for the entire DataFrame
+    pps_matrix = pps.matrix(df)
+    
+    # Filter the PPS matrix to get only the scores for the specified target column
+    # return pps_matrix[pps_matrix['target'] == target][['feature', 'ppscore']]
