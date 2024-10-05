@@ -466,3 +466,56 @@ def page_3():
 "* Data visualizations indicated that flight fares tend to be lower when booked several weeks in advance.\n"
         "* Additionally, fares were generally cheaper for midweek flights compared to weekend flights, supporting our hypothesis."
                  )
+
+
+def page_4():
+    st.title('Fare Predictor')
+
+    # Navigation Links
+    st.markdown("""
+       
+        - [Project Summary](#project-summary)
+        - [Dataset Information](#dataset-information)
+        - [Feature Terminology](#feature-terminology)
+        - [Business Requirements](#business-requirements)
+    """)
+
+    # Project Summary Section
+    st.markdown("### <a name='project-summary'></a>Project Summary", unsafe_allow_html=True)
+    st.write(
+        "Fare prediction is an essential aspect of the airline industry, as it helps both airlines and customers understand pricing dynamics. "
+        "The goal of this project is to develop a predictive model that can accurately forecast flight fares based on various factors such as route, date of travel, and other relevant features.\n\n"
+        "A fictional organization has tasked a data practitioner to analyze a dataset of airline flight routes and fares from 1993 to 2024 to identify patterns and develop a model for fare prediction."
+    )
+
+    # Dataset Information Section
+    st.markdown("### <a name='dataset-information'></a>Dataset Information", unsafe_allow_html=True)
+    st.info(
+        "#### **Project Dataset**\n\n"
+        "**Dataset**: A publicly available dataset sourced from Kaggle was used for this project.\n\n"
+        "**Dataset Attributes**: The dataset contains several attributes relevant to flight fares, including 'Fare' as the target.\n\n"
+        "**Dataset Observations**: The dataset contains a total of several observations."
+    )
+    st.dataframe(raw_df.head())
+
+    # Feature Terminology Section
+    st.markdown("### <a name='feature-terminology'></a>Feature Terminology", unsafe_allow_html=True)
+    st.info(
+        "#### **Feature Terminology**\n\n"
+        "* **Date** - Date of travel.\n"
+        "* **Route** - The flight route taken.\n"
+        "* **Airline** - The airline operating the flight.\n"
+        "* **Fare** - The price of the flight (target feature).\n"
+        "* **Distance** - Distance of the flight in miles.\n"
+        "* **Time of Day** - Time of day when the flight is scheduled.\n"
+        "* **Season** - Season during which the flight is scheduled.\n"
+        "* **Booking Window** - The number of days before the flight when it is booked."
+    )
+
+    # Business Requirements Section
+    st.markdown("### <a name='business-requirements'></a>Business Requirements", unsafe_allow_html=True)
+    st.success(
+        "#### **Business Requirements**\n\n"
+        "**Business Requirement 1** - The client is interested in understanding the factors that influence flight fares and which attributes have the most significant impact on fare pricing.\n\n"
+        "**Business Requirement 2** - The client is interested in using historical flight data to predict future fares for better pricing strategies."
+    )
