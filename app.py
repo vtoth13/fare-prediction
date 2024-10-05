@@ -414,3 +414,55 @@ def page_2():
         f"Further analysis could involve segmenting the data by different categories (e.g., short-haul vs long-haul flights) "
         f"to see if these relationships hold across different subsets of the data."
     )
+
+
+
+def page_3():
+    st.title('Fare Predictor')
+    st.header("Project Hypotheses")
+    # Navigation Links
+    st.markdown("""
+        - [Hypothesis 1](#hypothesis-1)
+        - [Hypothesis 2](#hypothesis-2)
+        - [Hypothesis 3](#hypothesis-3)
+    """)
+
+    # Hypothesis 1 Section
+
+    st.markdown("### <a name='hypothesis-1'></a>Hypothesis 1", unsafe_allow_html=True)
+    st.info(
+                "* We suspect that flight fares are significantly influenced by the distance of the flight and the time of year (seasonal pricing).\n\n"
+
+          )
+    st.markdown("Findings")
+    st.info(
+        "* This hypothesis was supported by the data analysis.\n"
+        "* A strong correlation was found between flight distance and fare prices, indicating that longer flights tend to be more expensive.\n"
+        "* Seasonal patterns were also observed, with higher fares typically during peak travel periods (e.g., holidays)."
+  
+         )
+
+#    
+
+    # Hypothesis 3 Section
+    st.markdown("### <a name='hypothesis-2'></a>Hypothesis 2", unsafe_allow_html=True)
+    st.success(
+        "* We suspect that fares are affected by the airline operating the flight, with certain airlines consistently offering higher or lower fares.\n\n"
+
+    )
+    st.markdown("Findings")
+    st.info(
+ "* The analysis showed that some airlines have higher average fares compared to others, validating our hypothesis.\n"
+        "* However, fare variability also depended on route and time of booking, suggesting that pricing strategies differ significantly across airlines."
+  )
+    # Hypothesis 3 Section
+    st.markdown("### <a name='hypothesis-3'></a>Hypothesis 3", unsafe_allow_html=True)
+    st.success(
+        "* We suspect that the day of the week and the booking window (how far in advance the flight is booked) significantly affect flight fares.\n\n"
+
+    )
+    st.markdown("Findings")
+    st.info(
+"* Data visualizations indicated that flight fares tend to be lower when booked several weeks in advance.\n"
+        "* Additionally, fares were generally cheaper for midweek flights compared to weekend flights, supporting our hypothesis."
+                 )
