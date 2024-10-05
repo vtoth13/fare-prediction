@@ -519,3 +519,91 @@ def page_4():
         "**Business Requirement 1** - The client is interested in understanding the factors that influence flight fares and which attributes have the most significant impact on fare pricing.\n\n"
         "**Business Requirement 2** - The client is interested in using historical flight data to predict future fares for better pricing strategies."
     )
+
+
+
+
+import streamlit as st
+
+def page_5():
+    st.title('Fare Predictor')
+    st.write("### Project Conclusions")
+
+    
+    st.success(
+            f"#### Business Requirements\n\n"
+            f"*Business Requirement 1* - This requirement was met through comprehensive data exploration and feature engineering.\n"
+            f"Key features influencing the fare prices included:\n"
+            f"* Distance between airports (in miles), the quarter of the year, and the number of passengers.\n\n"
+            f"*Business Requirement 2* - This requirement was met by training a machine learning regression model.\n"
+            f"* The model performed well with an R-squared score of 95% on the training set and 94% on the test set.\n"
+            f"* Mean Absolute Error (MAE) on the test set was within acceptable limits, showing the model's effectiveness in predicting fare prices."
+        )
+
+    st.info(
+            f"#### Project Outcomes\n\n"
+            f"* The model successfully predicts fare prices with high accuracy.\n"
+            f"* Key factors influencing fare prices were identified, providing valuable insights for the client.\n"
+            f"* The interactive web application allows for easy fare prediction and analysis of routes and carriers.\n"
+            f"* The project demonstrates the potential of machine learning in the airline industry for pricing strategies."
+        )
+
+    st.warning(
+            f"#### Future Improvements\n\n"
+            f"* Incorporate real-time data such as current demand, fuel prices, and competitor pricing for more accurate predictions.\n"
+            f"* Expand the model to include more features such as specific flight times, holiday periods, and economic indicators.\n"
+            f"* Implement advanced machine learning techniques like ensemble methods or deep learning for potentially improved accuracy.\n"
+            f"* Develop a system for continuous model updates as new data becomes available.\n"
+            f"* Create a more comprehensive route analysis tool with visualizations of popular routes and pricing trends over time."
+        )
+ 
+ 
+import streamlit as st
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import Pipeline
+from sklearn.feature_selection import mutual_info_regression
+
+def load_and_analyze_data(file_path, target_column='fare', n_rows=1000):
+    # Load the first 1000 rows of the dataset
+    df = pd.read_csv(file_path, nrows=n_rows)
+    
+    # Set the target variable
+    target = target_column
+    features = [col for col in df.columns if col != target]
+    
+    # Separate numeric and categorical columns
+    numeric_features = df[features].select_dtypes(include=['int64', 'float64']).columns
+    categorical_features = df[features].select_dtypes(include=['object', 'category']).columns
+    
+    # Calculate correlation for numeric features
+    correlations = df[numeric_features].corrwith(df[target]).abs()
+    
+    # Calculate mutual information for categorical features
+    le = LabelEncoder()
+    mi_scores = {}
+    for feature in categorical_features:
+        df[feature] = le.fit_transform(df[feature].astype(str))
+    
+    mi_scores = mutual_info_regression(df[categorical_features], df[target])
+    mi_scores = pd.Series(mi_scores, index=categorical_features)
+    
+    # Combine correlations and mutual information scores
+    feature_importance = pd.concat([correlations, mi_scores]).sort_values(ascending=False)
+    
+    return feature_importance, features, target
+
+def plot_top_feature_importance(feature_importance, top_n=4):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    top_features = feature_importance.head(top_n)
+    sns.barplot(x=top_features.values, y=top_features.index, ax=ax)
+    ax.set_title(f"Top {top_n} Feature Importance")
+    ax.set_xlabel("Importance Score")
+    ax.set_ylabel("Features")
+    return fig
+
