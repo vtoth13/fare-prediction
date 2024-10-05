@@ -99,3 +99,41 @@ def page_1():
 
 # # Call the page_1 function to display the content
 # page_1()
+        
+
+
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+
+df  = pd.read_csv("US Airline Flight Routes and Fares 1993-2024.csv")
+# Global functions
+@st.cache_data
+def load_data():
+    return pd.read_csv('data_file.csv')
+
+@st.cache_data
+def clean_data(df):
+    df = df.drop_duplicates()
+    df = df.dropna()
+    df['Year'] = df['Year'].astype(int)
+    df['quarter'] = df['quarter'].astype(int)
+    return df
+
+@st.cache_data
+def engineer_features(df):
+    df['profit_margin'] = (df['fare'] - df['fare_low']) / df['fare']
+    return df
+
+@st.cache_data
+def one_hot_encode(df):
+    cat_cols = df.select_dtypes(include=['object']).columns
+    encoder = OneHotEncoder(sparse_output=False, drop='first')  # Changed 'sparse' to 'sparse_output'
+    encoded = encoder.fit_transform(df[cat_cols])
+    encoded_df = pd.DataFrame(encoded, columns=encoder.get_feature_names_out(cat_cols))
+    return pd.concat([df.drop(columns=cat_cols), encoded_df], axis=1)
+
