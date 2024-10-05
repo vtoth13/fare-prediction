@@ -204,3 +204,142 @@ def calculate_pps(df, target):
     
     # Filter the PPS matrix to get only the scores for the specified target column
     # return pps_matrix[pps_matrix['target'] == target][['feature', 'ppscore']]
+ 
+def page_2():
+    import streamlit as st
+    st.title('Fare Predictor')
+    st.write("### Airline Fare Correlation Study")
+
+    st.write(
+        f"* [Business Requirement and Dataset](#business-requirement-1-data-visualisation-and-correlation-study)\n"
+        f"* [Summary of Correlation Analysis](#summary-of-correlation-analysis)\n"
+        f"* [Summary of PPS Analysis](#summary-of-pps-analysis)\n"
+        f"* [Analysis of Most Correlated Features](#analysis-of-most-correlated-features)\n"
+        f"* [Feature Relationships](#feature-relationships)\n"
+        f"* [Conclusions](#conclusions)\n"
+    )
+
+    st.info(
+        f"#### **Business Requirement 1**: Data Visualisation and Correlation Study\n\n"
+        f"* We need to perform a correlation study to determine which features correlate most closely to the airline fare.\n"
+        f"* A Pearson's correlation will indicate linear relationships between numerical variables.\n"
+        f"* A Spearman's correlation will measure the monotonic relationships between variables.\n"
+        f"* A Predictive Power Score (PPS) analysis will be performed to capture non-linear relationships.\n"
+    )
+
+    raw_df = load_data()
+    clean_df = clean_data(raw_df)
+    engineered_df = engineer_features(clean_df)
+
+    if st.checkbox("Inspect airline fare dataset"):
+        st.dataframe(raw_df.head(5))
+        st.write(f"The dataset contains {raw_df.shape[0]} observations with {raw_df.shape[1]} attributes.")
+
+    st.write("---")
+
+    st.write(
+        f"#### **Summary of Correlation Analysis**\n"
+        f"* Correlations within the dataset were analysed using Spearman and Pearson correlations.\n"
+        f"* For both correlations, all categorical features from the cleaned dataset were one hot encoded.\n"
+    )
+
+    def correlation(df, method):
+        ohe_df = one_hot_encode(df)
+        corr = ohe_df.corr(method=method)["fare_lg"].sort_values(
+            key=abs, ascending=False)[1:].head(10)
+        return corr
+
+    if st.checkbox("View Pearson correlation results"):
+        st.write(correlation(engineered_df, method="pearson"))
+    if st.checkbox("View Spearman correlation results"):
+        st.write(correlation(engineered_df, method="spearman"))
+
+    st.write("---")
+
+    st.write(
+        f"#### **Summary of PPS Analysis**\n"
+        f"* The PPS analysis provides insights into non-linear relationships between features and the target variable.\n"
+        f"* It complements the linear correlation analysis by capturing more complex interactions.\n"
+    )
+
+    
+    pps_scores = calculate_pps(engineered_df, "fare_lg")
+
+    import streamlit as st
+    import pandas as pd
+    import plotly.express as px
+
+# Load your data only once at the beginning of the app
+    cleaned_df = pd.read_csv('data_file.csv')
+
+# Create a checkbox for displaying the heatmap
+    # if st.checkbox("View PPS heatmap"):
+        
+    # # Select numeric columns
+    #     numeric_cols = cleaned_df.select_dtypes(include=['number']).columns.tolist()
+
+    #     corr_matrix = cleaned_df[numeric_cols].corr()
+
+    # # Create a heatmap using Plotly
+    #     fig = px.imshow(corr_matrix,
+    #                 text_auto=True,  # Shows values on heatmap
+    #                 aspect="auto",   # Adjust the aspect ratio
+    #                 color_continuous_scale='Viridis',  # Color scheme
+    #                 labels=dict(color="Correlation"))  # Label for color bar
+
+    # # Display the heatmap in Streamlit
+    #     st.plotly_chart(fig)
+    if st.checkbox("View PPS heatmap"):
+    # Path to your heatmap image
+        heatmap_image_path = 'hp.png'  # Update this path with your actual image path
+    
+    # Display the image of the heatmap
+        st.image(heatmap_image_path, caption='PPS Heatmap', use_column_width=True)
+
+
+
+    st.write("---")
+
+    st.write(
+        f"#### **Analysis of Most Correlated Features**\n"
+        f"Based on the correlation and PPS analyses, we can observe the following:\n\n"
+        f"1. **Number of Miles (nsmiles)**: This feature shows a strong positive correlation with fare_lg. "
+        f"This is expected as longer flights typically cost more.\n\n"
+        f"2. **Number of Passengers (passengers)**: There's a moderate positive correlation between the number "
+        f"of passengers and fare_lg. This could indicate that popular routes (with more passengers) tend to have higher fares.\n\n"
+        f"3. **Large Market Share (large_ms)**: This feature shows a notable correlation with fare_lg. "
+        f"It suggests that airlines with a larger market share on a route might charge higher fares.\n\n"
+        f"4. **Low-Fare Market Share (lf_ms)**: There's a negative correlation between low-fare market share and fare_lg. "
+        f"This implies that routes with more low-cost carrier competition tend to have lower fares.\n\n"
+        f"5. **Year**: The year shows some correlation with fare_lg, which could indicate a general trend of "
+        f"increasing fares over time or reflect economic factors affecting air travel pricing.\n"
+    )
+
+    feature_distribution = st.selectbox(
+        "Select feature to view distribution:",
+        engineered_df.columns.tolist()
+    )
+
+    def plot_distribution(df, col):
+        fig, ax = plt.subplots(figsize=(14, 8))
+        if df[col].dtype == 'object':
+            sns.countplot(data=df, x=col, ax=ax)
+        else:
+            sns.histplot(data=df, x=col, ax=ax)
+        plt.xticks(rotation=90)
+        plt.title(f"Distribution of {col}", fontsize=20, y=1.05)
+        st.pyplot(fig)
+
+    plot_distribution(engineered_df, feature_distribution)
+
+    st.write("---")
+
+    st.write(
+        f"#### **Feature Relationships**\n"
+        f"* A parallel plot is used to visualize relationships between multiple features simultaneously.\n"
+        f"* This plot helps us see patterns and trends across different variables.\n"
+        f"* Pay attention to how the lines flow between different axes to identify potential relationships.\n"
+    )
+
+
+    
