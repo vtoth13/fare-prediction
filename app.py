@@ -137,3 +137,36 @@ def one_hot_encode(df):
     encoded_df = pd.DataFrame(encoded, columns=encoder.get_feature_names_out(cat_cols))
     return pd.concat([df.drop(columns=cat_cols), encoded_df], axis=1)
 
+
+import streamlit as st
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.pipeline import Pipeline
+from feature_engine.imputation import MeanMedianImputer
+from feature_engine.encoding import OneHotEncoder
+# from ppscore import predictive_power_score
+import ppscore as pps
+
+# Utility functions
+def dc_no_encoding_pipeline(df):
+    numeric_columns = ['Year', 'quarter', 'nsmiles', 'passengers', 'large_ms', 'fare_lg', 'lf_ms', 'fare_low']
+    pipeline = Pipeline([
+        ("median_imputation", MeanMedianImputer(
+            imputation_method="median",
+            variables=numeric_columns)),
+    ])
+
+    clean_df = pipeline.fit_transform(df)
+    return clean_df
+
+def one_hot_encode(df):
+    categorical_vars = ['airport_1', 'airport_2', 'carrier_lg', 'carrier_low']
+    encoder = OneHotEncoder(
+        variables=categorical_vars,
+        drop_last=False)
+    df_ohe = encoder.fit_transform(df)
+    return df_ohe
+
