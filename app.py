@@ -65,3 +65,37 @@ def page_1():
         carrier_lg = st.selectbox('Large Carrier', carrier_lg_options)
         large_ms = st.number_input('Large Carrier Market Share (%)', min_value=0, max_value=100, value=52, step=1)
         fare_lg = st.number_input('Large Carrier Fare ($)', min_value=0, value=307, step=1)
+
+ # Create another row for low-cost carrier inputs
+    col4, col5, col6 = st.columns(3)
+    with col4:
+        carrier_low = st.selectbox('Low-Cost Carrier', carrier_low_options)
+        
+    with col5:
+        lf_ms = st.number_input('Low-Cost Carrier Market Share (%)', min_value=0, max_value=100, value=45, step=1)
+
+    with col6:
+        fare_low = st.number_input('Low-Cost Carrier Fare ($)', min_value=0, value=280, step=1)
+
+    if st.button('Run Predictive Analysis'):
+        input_data = pd.DataFrame({
+            'Year': [year], 'quarter': [quarter], 'airport_1': [airport_1], 'airport_2': [airport_2],
+            'nsmiles': [nsmiles], 'passengers': [passengers], 'carrier_lg': [carrier_lg],
+            'large_ms': [large_ms / 100], 'fare_lg': [fare_lg], 'carrier_low': [carrier_low],
+            'lf_ms': [lf_ms / 100], 'fare_low': [fare_low]
+        })
+        
+        categorical_features = ['airport_1', 'airport_2', 'carrier_lg', 'carrier_low']
+        input_data_encoded = pd.get_dummies(input_data, columns=categorical_features)
+        
+        columns_used_in_training = model.feature_names_in_
+        for col in columns_used_in_training:
+            if col not in input_data_encoded.columns:
+                input_data_encoded[col] = 0
+                
+        input_data_encoded = input_data_encoded[columns_used_in_training]
+        prediction = model.predict(input_data_encoded)
+        st.success(f'Predicted Fare: ${prediction[0]:.2f}')
+
+# # Call the page_1 function to display the content
+# page_1()
