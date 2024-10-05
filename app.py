@@ -342,4 +342,75 @@ def page_2():
     )
 
 
+    import pandas as pd
+    import plotly.express as px
+    import streamlit as st
+
+# Define a function to prepare the data
+    def prepare_parallel_plot_data(df):
+    # Take the first 1000 rows
+        df = df.head(1000)
     
+    # Apply pd.qcut on columns of type float64
+        for col in df.select_dtypes(include=['float64']).columns:
+            df[col] = pd.qcut(df[col], q=4, labels=['Low', 'Medium-Low', 'Medium-High', 'High'])
+    
+        return df
+
+# Load the cleaned dataset
+    data_file = 'data_file.csv'
+    cleaned_df = pd.read_csv(data_file)
+
+# Prepare the data for parallel plot
+    parallel_df = prepare_parallel_plot_data(cleaned_df)
+
+# Create a color mapping for the fare column
+    color_mapping = {
+    'Low': '#1f77b4',        # Blue
+    'Medium-Low': '#ff7f0e', # Orange
+    'Medium-High': '#2ca02c',# Green
+    'High': '#d62728'        # Red
+}
+
+# Apply color mapping to the 'fare' column
+    parallel_df['fare_color'] = parallel_df['fare'].map(color_mapping)
+
+# Create the parallel plot using plotly express
+    fig = px.parallel_categories(
+    parallel_df, 
+    dimensions=parallel_df.columns.drop(['fare', 'fare_color']),  # Excluding 'fare' from dimensions
+    color=parallel_df['fare_color'],  # Use the color-mapped 'fare_color' column
+    color_continuous_scale=px.colors.sequential.Viridis
+)
+
+# Displaying the plot in Streamlit if the checkbox is selected
+    if st.checkbox("View parallel plot"):
+        st.plotly_chart(fig)
+
+
+
+    st.write("---")
+
+    st.success(
+        f"#### **Conclusions**\n\n"
+        f"Based on our correlation study, PPS analysis, and feature analysis, we can draw the following conclusions:\n\n"
+        f"1. **Distance is a Key Factor**: The number of miles (nsmiles) shows the strongest correlation with fare, "
+        f"confirming that distance is a primary driver of airline pricing.\n\n"
+        f"2. **Market Dynamics Matter**: Both large market share (large_ms) and low-fare market share (lf_ms) "
+        f"significantly influence fares. This suggests that competitive landscapes on different routes play a crucial role in pricing.\n\n"
+        f"3. **Demand Influences Price**: The moderate correlation between number of passengers and fare indicates "
+        f"that popular routes might command higher prices, possibly due to higher demand.\n\n"
+        f"4. **Temporal Trends**: The correlation with the 'Year' variable suggests that there might be long-term "
+        f"trends in fare pricing, possibly reflecting economic changes or industry developments.\n\n"
+        f"5. **Complex Interactions**: The parallel plot and PPS analysis reveal complex interactions between variables. "
+        f"These non-linear relationships provide additional insights beyond simple correlations.\n\n"
+        f"These findings can significantly influence our fare prediction model:\n"
+        f"- We should ensure that distance (nsmiles) is a key feature in our model.\n"
+        f"- Market share variables should be included to capture competitive dynamics.\n"
+        f"- Consider creating interaction terms, especially between distance and passenger numbers.\n"
+        f"- Time-based features (like year and quarter) should be included to capture temporal trends.\n"
+        f"- Feature engineering, such as creating a 'price per mile' feature, could provide additional insights.\n"
+        f"- The PPS analysis highlights potential non-linear relationships that might benefit from more complex modeling techniques.\n\n"
+        f"Further analysis could involve segmenting the data by different categories (e.g., short-haul vs long-haul flights) "
+        f"to see if these relationships hold across different subsets of the data."
+    )
