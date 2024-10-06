@@ -715,3 +715,27 @@ def page_model_performance_body():
 
     st.table(test_classification_report)
     # st.table(test_accuracy)    
+
+# Main app
+def main():
+    
+    page = st.sidebar.radio("Menu", ("Project Summary" ,"Project Hypotheses" , "Feature Correlation Study" ,  "Airline Fare Prediction", "Model Performance" , "Project Conclusions"))
+
+    # if page == "Airline Fare Prediction":
+    #     page_1()
+    if page == "Project Summary":
+        page_4()
+    elif page == "Feature Correlation Study":
+        page_2()
+    elif page == "Project Hypotheses":
+        page_3()
+    elif page == "Airline Fare Prediction":
+         page_1()
+    elif page == "Model Performance":
+        page_model_performance_body()
+    elif page == "Project Conclusions":
+        page_5()
+    
+
+if __name__ == "__main__":
+    main()    
