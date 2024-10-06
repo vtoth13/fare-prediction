@@ -657,3 +657,61 @@ def page_model_performance_body():
         f"* Recall on fare prediction: 95% on train set, 95% on test set.\n"
         f"* Precision on fare prediction: 95% on train set, 95% on test set."
     )
+
+    import streamlit as st
+    import pandas as pd
+
+# Train Set Info
+    st.info("**Train Set**")
+
+# Confusion Matrix
+    st.write("--- Confusion Matrix ---")
+    train_confusion_matrix = pd.DataFrame([[89469, 4490], [4114, 72731]],
+                                      index=["Actual 0", "Actual 1"],
+                                      columns=["Predicted 0", "Predicted 1"])
+    st.table(train_confusion_matrix)
+
+# Classification Report
+    st.write("--- Classification Report ---")
+    train_classification_report = pd.DataFrame({
+    "precision": [0.96, 0.94],
+    "recall": [0.95, 0.95],
+    "f1-score": [0.95, 0.94],
+    "support": [93959, 76845]
+}, index=["0", "1"])
+#     train_accuracy = pd.DataFrame({
+#     "accuracy": [0.95],
+#     "macro avg": [0.95],
+#     "weighted avg": [0.95]
+# }, index=["Training Data"])
+
+    st.table(train_classification_report)
+    # st.table(train_accuracy)
+
+# Test Set Info
+    st.info("**Test Set**")
+
+# Confusion Matrix
+    st.write("--- Confusion Matrix ---")
+    test_confusion_matrix = pd.DataFrame([[38232, 1945], [1841, 31185]],
+                                     index=["Actual 0", "Actual 1"],
+                                     columns=["Predicted 0", "Predicted 1"])
+    st.table(test_confusion_matrix)
+
+# Classification Report
+    st.write("--- Classification Report ---")
+    test_classification_report = pd.DataFrame({
+    "precision": [0.95, 0.94],
+    "recall": [0.95, 0.94],
+    "f1-score": [0.95, 0.94],
+    "support": [40177, 33026]
+}, index=["0", "1"])
+#     test_accuracy = pd.DataFrame({
+#     "accuracy": [0.95],
+#     "macro avg": [0.95],
+#     "weighted avg": [0.95]
+# }, index=["Testing Data"])
+
+
+    st.table(test_classification_report)
+    # st.table(test_accuracy)    
