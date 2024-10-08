@@ -8,3 +8,4 @@ streamlit
 plotly
 ppscore
 feature_engine
+gunicorn
