@@ -85,3 +85,19 @@ The model's performance was evaluated using the following metrics:
 - **Actual vs Predicted**: A plot showing the relationship between the actual and predicted fare prices.
 - **Error Analysis**: An analysis of the errors in fare prediction to understand where the model performs well or where improvements can be made.
 
+## How to Use the App
+
+1. Enter flight details such as origin and destination airports, miles, carrier, etc.
+2. Click "Predict Fare" to get the predicted fare for the given flight route.
+3. Explore the fare trend visualizations to understand historical fare patterns.
+
+## Data Visualizations
+
+The dashboard includes several visualizations to help answer the project’s business requirements:
+
+1. **Fare Trend Over Time**: A line chart showing how fares have changed over the years for different routes and carriers.
+2. **Fare Distribution by Carrier**: A bar chart that shows the variability of fares between different carriers.
+3. **Correlation Heatmap**: Displays the correlation between features such as distance, carrier, and fare prices.
+4. **Fare vs Distance Scatter Plot**: Visualizes the relationship between fare prices and flight distance.
+
+Each plot helps users to explore different aspects of the data and supports the predictions made by the model.
