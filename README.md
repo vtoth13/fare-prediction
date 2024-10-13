@@ -101,3 +101,22 @@ The dashboard includes several visualizations to help answer the project’s bus
 4. **Fare vs Distance Scatter Plot**: Visualizes the relationship between fare prices and flight distance.
 
 Each plot helps users to explore different aspects of the data and supports the predictions made by the model.
+
+## CRISP-DM Process
+
+This project follows the CRISP-DM methodology:
+
+1. **Business Understanding**: Predict airline fares based on historical data.
+2. **Data Understanding**: The dataset includes historical flight data from 1993 to 2024.
+3. **Data Preparation**: Data was cleaned, missing values were handled, and relevant features were selected for the model.
+4. **Modeling**: A Linear Regression model was developed and evaluated.
+5. **Evaluation**: The model's performance was assessed based on R² score and error analysis.
+6. **Deployment**: The model was deployed via Streamlit as an interactive web application.
+
+## Git & Version Control
+
+The project uses Git and GitHub for version control. Commits are made at every significant stage of the project (data cleaning, model training, and deployment).
+
+## Conclusion
+
+The US Airline Fare Prediction System successfully predicts fares for different flight routes and provides valuable insights through visualizations. The model has a good R² score and performs well in predicting fares, addressing the business requirements set out in the user stories.
