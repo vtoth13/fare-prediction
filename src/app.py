@@ -18,9 +18,9 @@ import pandas as pd
 import joblib
 
 # Load the dataset and model
-raw_df = pd.read_csv('data_file.csv')
+raw_df = pd.read_csv('data/data_file.csv')
 clean_df = raw_df.dropna()
-model = joblib.load('model.pkl')
+model = joblib.load('models/model.pkl')
 
 def page_1():
     st.title('Fare Predictor')
@@ -110,11 +110,15 @@ import plotly.express as px
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 
-df  = pd.read_csv("US Airline Flight Routes and Fares 1993-2024.csv")
+df = pd.read_csv(
+    "data/US Airline Flight Routes and Fares 1993-2024.csv", 
+    dtype={"column_name_20": str, "column_name_21": str}, 
+    low_memory=False
+)
 # Global functions
 @st.cache_data
 def load_data():
-    return pd.read_csv('data_file.csv')
+    return pd.read_csv('data/data_file.csv')
 
 @st.cache_data
 def clean_data(df):
@@ -173,7 +177,7 @@ def one_hot_encode(df):
 # Main application
 def load_data():
     # Replace this with your actual data loading logic
-    return pd.read_csv("data_file.csv")
+    return pd.read_csv("data/data_file.csv")
 
 def clean_data(df):
     return dc_no_encoding_pipeline(df)
@@ -270,7 +274,7 @@ def page_2():
     import plotly.express as px
 
 # Load your data only once at the beginning of the app
-    cleaned_df = pd.read_csv('data_file.csv')
+    cleaned_df = pd.read_csv('data/data_file.csv')
 
 # Create a checkbox for displaying the heatmap
     # if st.checkbox("View PPS heatmap"):
@@ -291,7 +295,7 @@ def page_2():
     #     st.plotly_chart(fig)
     if st.checkbox("View PPS heatmap"):
     # Path to your heatmap image
-        heatmap_image_path = 'hp.png'  # Update this path with your actual image path
+        heatmap_image_path = 'static/hp.png'  # Update this path with your actual image path
     
     # Display the image of the heatmap
         st.image(heatmap_image_path, caption='PPS Heatmap', use_column_width=True)
@@ -358,7 +362,7 @@ def page_2():
         return df
 
 # Load the cleaned dataset
-    data_file = 'data_file.csv'
+    data_file = 'data/data_file.csv'
     cleaned_df = pd.read_csv(data_file)
 
 # Prepare the data for parallel plot
@@ -635,7 +639,7 @@ def page_model_performance_body():
     st.write("---")
     st.write("#### Feature Importance Analysis")
 
-    file_path = "data_file.csv"  # Update this to your actual file path
+    file_path = "data/data_file.csv"  # Update this to your actual file path
     feature_importance, features, target = load_and_analyze_data(file_path, target_column='fare', n_rows=1000)
 
     st.write(f"The most important features used for predicting '{target}':")
@@ -736,6 +740,7 @@ def main():
     elif page == "Project Conclusions":
         page_5()
     
+
 
 if __name__ == "__main__":
     main()    
