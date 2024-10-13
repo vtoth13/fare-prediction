@@ -21,3 +21,35 @@ The application addresses the following business requirements through machine le
 
 Each user story is mapped to tasks like model development, data visualization, and feature importance analysis, as described below.
 
+## Installation
+
+To run the project locally, follow the steps below:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/fare-prediction
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd fare-prediction
+   ```
+
+3. Create and activate a virtual environment (optional but recommended):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+4. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. Run the application using Streamlit:
+   ```bash
+   streamlit run src/app.py
+   ```
+
+6. Access the application at [http://localhost:8501](http://localhost:8501) in your browser.
+
