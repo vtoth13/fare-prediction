@@ -62,3 +62,26 @@ To run the project locally, follow the steps below:
 - **static/**: Static assets such as images.
 - **requirements.txt**: Lists all the necessary Python dependencies.
 
+## Dataset
+
+The dataset used in this project contains historical US airline flight routes and fares from 1993 to 2024. The dataset includes columns for:
+
+- Year and quarter
+- Origin and destination airports
+- Number of miles between the airports
+- Number of passengers
+- Fare prices (for large carriers and low-cost carriers)
+- Carrier information and other related features
+
+## Model
+
+The application uses a machine learning model (Linear Regression) for fare prediction. The model was trained using historical fare data and saved using Joblib. The model file (`model.pkl`) is loaded when the application runs to make fare predictions.
+
+### Model Evaluation
+
+The model's performance was evaluated using the following metrics:
+
+- **R² score**: Measures how well the model predicts fare prices. The R² score for this model is 0.85, indicating a good fit.
+- **Actual vs Predicted**: A plot showing the relationship between the actual and predicted fare prices.
+- **Error Analysis**: An analysis of the errors in fare prediction to understand where the model performs well or where improvements can be made.
+
