@@ -149,3 +149,62 @@ The technologies used throughout the development are listed below:
 - [VSCode](https://code.visualstudio.com/) - IDE used for development.
 
 [Back to top](#overview)
+
+## Testing
+
+### Manual Testing
+
+#### User Story Testing
+
+The dashboard was manually tested using user stories as a basis for determining success.
+Jupyter notebooks were reliant on consecutive functions being successful, so manual testing against user stories was deemed less relevant.
+
+**As a non-technical user, I can view a project summary that describes the project, dataset, and business requirements to understand the project at a glance.**
+
+| Feature              | Action                  | Expected Result                                         | Actual Result          |
+|----------------------|-------------------------|---------------------------------------------------------|------------------------|
+| Project summary page  | Viewing summary page     | Page is displayed, can move between sections on page     | Functions as intended   |
+
+**As a non-technical user, I can view the project hypotheses and validations to determine what the project was trying to achieve and whether it was successful.**
+
+| Feature              | Action                  | Expected Result                                         | Actual Result          |
+|----------------------|-------------------------|---------------------------------------------------------|------------------------|
+| Project hypotheses page | Navigate to page       | Clicking on navbar link in sidebar navigates to correct page | Functions as intended   |
+
+**As a non-technical user, I can enter unseen data into the model and receive a prediction (Business Requirement 2).**
+
+| Feature              | Action                  | Expected Result                                         | Actual Result          |
+|----------------------|-------------------------|---------------------------------------------------------|------------------------|
+| Prediction page       | Navigate to page        | Clicking on navbar link in sidebar navigates to correct page | Functions as intended   |
+| Enter live data       | Interact with widgets   | All widgets are interactive, respond to user input       | Functions as intended   |
+| Live prediction       | Click 'Run Predictive Analysis' button | Clicking on button displays message on page with prediction and % chance | Functions as intended   |
+
+**As a technical user, I can view the correlation analysis to see how the outcomes were reached (Business Requirement 1).**
+
+| Feature              | Action                  | Expected Result                                         | Actual Result          |
+|----------------------|-------------------------|---------------------------------------------------------|------------------------|
+| Correlation Study page | Navigate to page       | Clicking on navbar link in sidebar navigates to correct page | Functions as intended   |
+| Correlation data      | Tick correlation results checkbox | Correlation data is displayed on dashboard              | Functions as intended   |
+| PPS Heatmap           | Tick PPS heatmap checkbox | Heatmap is displayed on dashboard                       | Functions as intended   |
+| Feature Correlation   | Select feature from dropdown box | Relevant countplot is displayed                         | Functions as intended   |
+| Parallel Plot         | Tick parallel plot checkbox | Parallel plot is displayed on dashboard, is interactive | Functions as intended   |
+
+**As a technical user, I can view all the data to understand the model performance and see statistics related to the model (Business Requirement 2).**
+
+| Feature              | Action                  | Expected Result                                         | Actual Result          |
+|----------------------|-------------------------|---------------------------------------------------------|------------------------|
+| Model performance page | Navigate to page       | Clicking on navbar link in sidebar navigates to correct page | Functions as intended   |
+| Success metrics       | View page               | Success metrics outlined in business case are displayed  | Functions as intended   |
+| ML Pipelines          | View page               | Both ML Pipelines from Jupyter notebooks are displayed   | Functions as intended   |
+| Feature Importance    | View page               | Most important features are plotted and displayed        | Functions as intended   |
+| Model Performance     | View page               | Confusion matrix for train and test sets are displayed   | Functions as intended   |
+
+### Validation
+
+All code in the `src` directory was validated as conforming to PEP8 standards.
+
+Some files had warnings due to 'line too long', however, these were related to long strings when writing to the dashboard. These warnings were ignored as they did not affect the readability of any functions.
+
+### Automated Unit Tests
+
+No automated unit tests have been carried out at this time.
