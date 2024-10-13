@@ -53,3 +53,12 @@ To run the project locally, follow the steps below:
 
 6. Access the application at [http://localhost:8501](http://localhost:8501) in your browser.
 
+## File Structure
+
+- **src/**: Contains the main application code (`app.py`).
+- **data/**: Includes the dataset (`data_file.csv`, `US Airline Flight Routes and Fares 1993-2024.csv`).
+- **models/**: Contains the pre-trained model (`model.pkl`).
+- **notebooks/**: Jupyter notebooks for model training and exploration.
+- **static/**: Static assets such as images.
+- **requirements.txt**: Lists all the necessary Python dependencies.
+
