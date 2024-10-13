@@ -120,3 +120,32 @@ The project uses Git and GitHub for version control. Commits are made at every s
 ## Conclusion
 
 The US Airline Fare Prediction System successfully predicts fares for different flight routes and provides valuable insights through visualizations. The model has a good R² score and performs well in predicting fares, addressing the business requirements set out in the user stories.
+
+## Technologies Used
+
+The technologies used throughout the development are listed below:
+
+### Languages
+
+- [Python](https://www.python.org/)
+
+### Python Packages
+
+- [Pandas](https://pandas.pydata.org/) - Open source library for data manipulation and analysis.
+- [NumPy](https://numpy.org/) - Adds support for large, multi-dimensional arrays and matrices, and high-level mathematical functions.
+- [Matplotlib](https://matplotlib.org/) - Comprehensive library for creating static, animated and interactive visualisations.
+- [Seaborn](https://seaborn.pydata.org/) - Data visualisation library for drawing attractive and informative statistical graphics.
+- [Feature-engine](https://feature-engine.readthedocs.io/) - Library with multiple transformers to engineer and select features for machine learning models.
+- [ppscore](https://github.com/8080labs/ppscore) - Library for detecting linear or non-linear relationships between two features.
+- [scikit-learn](https://scikit-learn.org/) - Open source machine learning library that features various algorithms for training ML models.
+- [Joblib](https://joblib.readthedocs.io/en/latest/) - Provides tools for lightweight pipelining, e.g., caching output values.
+- [Plotly](https://plotly.com/python/) - A library for creating interactive visualizations in Python.
+
+### Other Technologies
+
+- [Git](https://git-scm.com/) - For version control.
+- [GitHub](https://github.com/) - Code repository and project management through GitHub projects.
+- [Render](https://www.render.com/) - For application deployment.
+- [VSCode](https://code.visualstudio.com/) - IDE used for development.
+
+[Back to top](#overview)
