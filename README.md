@@ -279,3 +279,27 @@ The project was deployed using [Render.com](https://render.com/), which offers 
 
 By following these steps, the application is successfully deployed and accessible to users. The platform ensures scalability and easy management of updates or future deployments.
 
+## Credits
+
+### Data
+- The dataset used for this project was sourced from [Kaggle](https://www.kaggle.com/) and includes historical US airline flight routes and fares from 1993 to 2024.
+
+### Libraries and Tools
+- **[Pandas](https://pandas.pydata.org/)**: For data manipulation and analysis.
+- **[NumPy](https://numpy.org/)**: For numerical computations and handling multi-dimensional arrays.
+- **[Scikit-learn](https://scikit-learn.org/)**: For building and training the machine learning model.
+- **[Matplotlib](https://matplotlib.org/)** and **[Seaborn](https://seaborn.pydata.org/)**: For data visualization and creating plots.
+- **[Streamlit](https://streamlit.io/)**: For building the interactive web application.
+- **[Plotly](https://plotly.com/python/)**: For creating interactive plots.
+- **[Feature-engine](https://feature-engine.readthedocs.io/)**: For feature transformation and engineering in machine learning.
+- **[Joblib](https://joblib.readthedocs.io/en/latest/)**: For model persistence and saving/loading trained models.
+
+### Deployment
+- **[Render.com](https://render.com/)**: For deploying the application and hosting the web service.
+
+### Inspiration
+- This project was inspired by the work done in machine learning, and it followed the guidelines provided in the Code Institute curriculum.
+
+### Acknowledgements
+- Thanks to [Kaggle](https://www.kaggle.com/) for providing the dataset used in this project.
+- Gratitude to my Mentor Mo Shami for providing guidance and support throughout the project.
