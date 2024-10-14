@@ -208,3 +208,33 @@ Some files had warnings due to 'line too long', however, these were related to l
 ### Automated Unit Tests
 
 No automated unit tests have been carried out at this time.
+
+## Dashboard Design
+
+The dashboard consists of the following pages, designed to answer the project’s business requirements and provide insights into fare prediction:
+
+### Project Summary:
+- Content: Introduction to the project, dataset details, and business requirements.
+- Purpose: Helps non-technical users understand the project scope and its objectives.
+
+### Fare Prediction:
+- Content: Input fields for entering flight details such as origin, destination, miles, carrier, etc.
+- Purpose: Allows users to enter unseen data and receive fare predictions.
+- Business Requirement: Answers the need for fare prediction functionality.
+
+### Fare Trends:
+- Content: Visualizations like line charts and bar charts showing fare trends over time and between carriers.
+- Purpose: Provides insights into how fares change over time or by carrier.
+- Business Requirement: Addresses the requirement to explore fare variability.
+
+### Correlation Study:
+- Content: Correlation analysis, PPS heatmap, and parallel plots.
+- Purpose: Helps technical users understand the relationships between features such as distance, carrier, and fare prices.
+- Business Requirement: Provides correlation insights to meet analytical requirements.
+
+### Model Performance:
+- Content: Displays the model's performance metrics, including R² score, confusion matrix, and feature importance.
+- Purpose: Allows technical users to evaluate model success.
+- Business Requirement: Helps meet the business goal of accurate fare prediction.
+
+Each page is navigable through the sidebar, and the design ensures that both non-technical and technical users can interact with the dashboard easily.
