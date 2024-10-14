@@ -238,3 +238,44 @@ The dashboard consists of the following pages, designed to answer the project’
 - Business Requirement: Helps meet the business goal of accurate fare prediction.
 
 Each page is navigable through the sidebar, and the design ensures that both non-technical and technical users can interact with the dashboard easily.
+
+## Deployment
+
+The project was deployed using [Render.com](https://render.com/), which offers a simple platform for hosting applications.
+
+### Deployment Steps on Render.com
+
+1.  **Create a Render.com account**:
+    
+    *   Navigate to [Render.com](https://render.com/) and sign up for an account if you don’t have one.
+        
+2.  **Connect GitHub repository**:
+    
+    *   Link your GitHub account to Render by clicking on **New** and selecting **Web Service**. This will allow you to deploy the project directly from your GitHub repository.
+        
+3.  **Select repository and branch**:
+    
+    *   Choose the fare-prediction repository and select the main branch for deployment.
+        
+4.  **Configure environment**:
+    
+    *   Set up the necessary environment variables and choose the deployment region. Ensure that you have added a `requirements.txt` and `Procfile` to your repository for Streamlit deployment.
+
+        
+5.  **Deploy the app**:
+    
+    *   Render will automatically detect the Python environment and install the necessary dependencies from the requirements.txt file.
+        
+    *   After deployment, you will receive a URL where your Streamlit application is accessible.
+        
+6.  **Access the application**:
+    
+    *   Once the deployment is complete, you can access the application using the provided URL, and the app will be live for users to interact with.
+        
+7.  **Monitor**:
+    
+    *   Render provides logs for monitoring your application and ensuring uptime.
+        
+
+By following these steps, the application is successfully deployed and accessible to users. The platform ensures scalability and easy management of updates or future deployments.
+
